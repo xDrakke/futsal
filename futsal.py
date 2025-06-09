@@ -31,21 +31,9 @@ grupo_c = processa_grupo(grupo, 'C')
 grupo_d = processa_grupo(grupo, 'D')
 
 # Título principal
-st.markdown("<h1 style='color: blue;'>Campeonato de FutSal 2025</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='color: lightblue;'>Campeonato de FutSal 2025</h1>", unsafe_allow_html=True)
 
 # Legenda lateral colorida
-st.sidebar.markdown("""
-#### Legenda:
-<span style='display: flex; flex-direction: column; gap: 4px; font-size:15px'>
-  <span><span style='color:#1565c0; font-weight:700;'>Cls</span> - <span style='color:#ff0000;'>Lugar na tabela</span></span>
-  <span><span style='color:#1565c0; font-weight:700;'>Time</span> - <span style='color:#ff0000;'>Equipe</span></span>
-  <span><span style='color:#1565c0; font-weight:700;'>Po</span> - <span style='color:#ff0000;'>Pontos</span></span>
-  <span><span style='color:#1565c0; font-weight:700;'>GP</span> - <span style='color:#ff0000;'>Gols Pró</span></span>
-  <span><span style='color:#1565c0; font-weight:700;'>GC</span> - <span style='color:#ff0000;'>Gols Contra</span></span>
-  <span><span style='color:#1565c0; font-weight:700;'>Sa</span> - <span style='color:#ff0000;'>Saldo (GP - GC)</span></span>
-  <span><span style='color:#1565c0; font-weight:700;'>Jo</span> - <span style='color:#ff0000;'>Jogos</span></span>
-</span>
-""", unsafe_allow_html=True)
 
 def highlight_top_two(df):
     html = "<table style='border-collapse:collapse;'>"
@@ -64,28 +52,51 @@ def highlight_top_two(df):
 # Exibe as tabelas dos grupos (sem índice real)
 col1, col2 = st.columns(2)
 with col1:
-    st.subheader("Grupo A")
+    st.markdown("<h6 style='color: lightgreen;'>Grupo A</h6>", unsafe_allow_html=True)
     st.markdown(highlight_top_two(grupo_a), unsafe_allow_html=True)
 
 with col2:
-    st.subheader("Grupo B")
+    st.markdown("<h6 style='color: lightgreen;'>Grupo B</h6>", unsafe_allow_html=True)
     st.markdown(highlight_top_two(grupo_b), unsafe_allow_html=True)
+
+st.markdown("""
+<span style='display: flex; flex-direction: row ; gap: 2px; font-size:10px'>
+  <span><span style='color:#1565c0; font-weight:350;'>Cls</span> - <span style='color:#ff0000;'>Lugar na tabela</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>Time</span> - <span style='color:#ff0000;'>Equipe</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>Po</span> - <span style='color:#ff0000;'>Pontos</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>GP</span> - <span style='color:#ff0000;'>Gols Pró</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>GC</span> - <span style='color:#ff0000;'>Gols Sofridos</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>Sa</span> - <span style='color:#ff0000;'>Saldo (GP - GC)</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>Jo</span> - <span style='color:#ff0000;'>Jogos</span></span>
+</span>
+""", unsafe_allow_html=True)
 
 col3, col4 = st.columns(2)
 with col3:
-    st.subheader("Grupo C")
+    st.markdown("<h6 style='color: lightgreen;'>Grupo C</h6>", unsafe_allow_html=True)
     st.markdown(highlight_top_two(grupo_c), unsafe_allow_html=True)
 with col4:
-    st.subheader("Grupo D")
+    st.markdown("<h6 style='color: lightgreen;'>Grupo D</h6>", unsafe_allow_html=True)
     st.markdown(highlight_top_two(grupo_d), unsafe_allow_html=True)
+st.markdown("""
+<span style='display: flex; flex-direction: row ; gap: 2px; font-size:10px'>
+  <span><span style='color:#1565c0; font-weight:350;'>Cls</span> - <span style='color:#ff0000;'>Lugar na tabela</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>Time</span> - <span style='color:#ff0000;'>Equipe</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>Po</span> - <span style='color:#ff0000;'>Pontos</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>GP</span> - <span style='color:#ff0000;'>Gols Pró</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>GC</span> - <span style='color:#ff0000;'>Gols Sofridos</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>Sa</span> - <span style='color:#ff0000;'>Saldo (GP - GC)</span></span>
+  <span><span style='color:#1565c0; font-weight:350;'>Jo</span> - <span style='color:#ff0000;'>Jogos</span></span>
+</span>
+""", unsafe_allow_html=True)
 
 # Seção de jogos e resultados
-st.title("Datas de Jogos e Resultados")
+st.markdown("<h2 style='color: lightgreen;'>Datas de Jogos e Resultados</h2>", unsafe_allow_html=True)
 
 # Prepara e filtra os jogos
 jogos['Status'] = jogos['Status'].fillna('Pendente').str.strip()
 status_options = jogos['Status'].unique()
-status_selecionado = st.selectbox('Filtrar por Status do Jogo', options=status_options)
+status_selecionado = st.selectbox('Veja os resultados ou consulte as datas dos próximos jogos', options=status_options)
 
 # Para evitar SettingWithCopyWarning, use .copy()
 jogos_filtrados = jogos[jogos['Status'] == status_selecionado].copy()
