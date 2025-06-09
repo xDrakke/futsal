@@ -31,7 +31,7 @@ grupo_c = processa_grupo(grupo, 'C')
 grupo_d = processa_grupo(grupo, 'D')
 
 # Título principal
-st.title("Campeonato de FutSal 2025")
+st.markdown("<h1 style='color: blue;'>Campeonato de FutSal 2025</h1>", unsafe_allow_html=True)
 
 # Legenda lateral colorida
 st.sidebar.markdown("""
@@ -47,22 +47,37 @@ st.sidebar.markdown("""
 </span>
 """, unsafe_allow_html=True)
 
+def highlight_top_two(df):
+    html = "<table style='border-collapse:collapse;'>"
+    # Cabeçalho
+    html += "<tr>" + "".join([f"<th style='padding:6px'>{col}</th>" for col in df.columns]) + "</tr>"
+    # Linhas
+    for i, row in df.iterrows():
+        if i < 2:
+            html += "<tr>" + "".join([f"<td style='font-weight:bold; padding:6px'>{cell}</td>" for cell in row]) + "</tr>"
+        else:
+            html += "<tr>" + "".join([f"<td style='padding:6px'>{cell}</td>" for cell in row]) + "</tr>"
+    html += "</table>"
+    return html
+
+
 # Exibe as tabelas dos grupos (sem índice real)
 col1, col2 = st.columns(2)
 with col1:
     st.subheader("Grupo A")
-    st.dataframe(grupo_a, hide_index=True, use_container_width=True)
+    st.markdown(highlight_top_two(grupo_a), unsafe_allow_html=True)
+
 with col2:
     st.subheader("Grupo B")
-    st.dataframe(grupo_b, hide_index=True, use_container_width=True)
+    st.markdown(highlight_top_two(grupo_b), unsafe_allow_html=True)
 
 col3, col4 = st.columns(2)
 with col3:
     st.subheader("Grupo C")
-    st.dataframe(grupo_c, hide_index=True, use_container_width=True)
+    st.markdown(highlight_top_two(grupo_c), unsafe_allow_html=True)
 with col4:
     st.subheader("Grupo D")
-    st.dataframe(grupo_d, hide_index=True, use_container_width=True)
+    st.markdown(highlight_top_two(grupo_d), unsafe_allow_html=True)
 
 # Seção de jogos e resultados
 st.title("Datas de Jogos e Resultados")
