@@ -31,7 +31,7 @@ grupo_c = processa_grupo(grupo, 'C')
 grupo_d = processa_grupo(grupo, 'D')
 
 # Título principal
-st.markdown("<h1 style='color: lightblue;'>Campeonato de FutSal 2025</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='color: MediumBlue;'>Campeonato de FutSal 2025</h1>", unsafe_allow_html=True)
 
 # Legenda lateral colorida
 
@@ -53,11 +53,21 @@ def highlight_top_two(df):
 col1, col2 = st.columns(2)
 with col1:
     st.markdown("<h6 style='color: lightgreen;'>Grupo A</h6>", unsafe_allow_html=True)
-    st.markdown(highlight_top_two(grupo_a), unsafe_allow_html=True)
-
+    styled_df_a = grupo_a.style.set_properties(**{'background-color': '#343a40', 'color': 'white', 'font-size':'12px'})
+    styled_df_a = styled_df_a.set_table_styles([
+    {'selector': 'th', 'props': [('background-color', '#4CAF50'), ('color', 'white'), ('font-weight', 'bold')]}
+])
+    html_table = styled_df_a.hide(axis="index").to_html(index=False)
+    st.markdown(html_table, unsafe_allow_html=True)
+    
 with col2:
     st.markdown("<h6 style='color: lightgreen;'>Grupo B</h6>", unsafe_allow_html=True)
-    st.markdown(highlight_top_two(grupo_b), unsafe_allow_html=True)
+    styled_df_b = grupo_b.style.set_properties(**{'background-color': '#343a40', 'color': 'white', 'font-size':'12px'})
+    styled_df_b = styled_df_b.set_table_styles([
+    {'selector': 'th', 'props': [('background-color', '#4CAF50'), ('color', 'white'), ('font-weight', 'bold')]}
+])
+    html_table = styled_df_b.hide(axis="index").to_html(index=False)
+    st.markdown(html_table, unsafe_allow_html=True)
 
 st.markdown("""
 <span style='display: flex; flex-direction: row ; gap: 2px; font-size:10px'>
@@ -74,10 +84,22 @@ st.markdown("""
 col3, col4 = st.columns(2)
 with col3:
     st.markdown("<h6 style='color: lightgreen;'>Grupo C</h6>", unsafe_allow_html=True)
-    st.markdown(highlight_top_two(grupo_c), unsafe_allow_html=True)
+    styled_df_c = grupo_c.style.set_properties(**{'background-color': '#343a40', 'color': 'white', 'font-size':'12px'})
+    styled_df_c = styled_df_c.set_table_styles([
+    {'selector': 'th', 'props': [('background-color', '#4CAF50'), ('color', 'white'), ('font-weight', 'bold')]}
+])
+    html_table = styled_df_c.hide(axis="index").to_html(index=False)
+    st.markdown(html_table, unsafe_allow_html=True)
+
 with col4:
     st.markdown("<h6 style='color: lightgreen;'>Grupo D</h6>", unsafe_allow_html=True)
-    st.markdown(highlight_top_two(grupo_d), unsafe_allow_html=True)
+    styled_df_d = grupo_d.style.set_properties(**{'background-color': '#343a40', 'color': 'white', 'font-size':'12px'})
+    styled_df_d = styled_df_d.set_table_styles([
+    {'selector': 'th', 'props': [('background-color', '#4CAF50'), ('color', 'white'), ('font-weight', 'bold')]}
+])
+    html_table = styled_df_d.hide(axis="index").to_html(index=False)
+    st.markdown(html_table, unsafe_allow_html=True)
+
 st.markdown("""
 <span style='display: flex; flex-direction: row ; gap: 2px; font-size:10px'>
   <span><span style='color:#1565c0; font-weight:350;'>Cls</span> - <span style='color:#ff0000;'>Lugar na tabela</span></span>
@@ -91,7 +113,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Seção de jogos e resultados
-st.markdown("<h2 style='color: lightgreen;'>Datas de Jogos e Resultados</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color: DarkOrange;'>Datas de Jogos e Resultados</h2>", unsafe_allow_html=True)
 
 # Prepara e filtra os jogos
 jogos['Status'] = jogos['Status'].fillna('Pendente').str.strip()
