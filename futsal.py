@@ -11,7 +11,7 @@ def processa_grupo(grupo_df, grupo_nome):
     # Calcula saldo corretamente
     df['Sa'] = df['GP'] - df['GC']
     # Ordena por pontos e nome do time
-    df = df.sort_values(['Po', 'Sa' ,'Time'], ascending=[False, True ,True]).reset_index(drop=True)
+    df = df.sort_values(['Po', 'Sa' ,'Time'], ascending=[False, False ,True]).reset_index(drop=True)
     # Cria coluna de Cls (1º, 2º, ...)
     df.insert(0, 'Cls', [f"{i}º" for i in range(1, len(df)+1)])
     # Ajusta capitalização para nomes dos times
